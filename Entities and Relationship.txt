@@ -1,0 +1,72 @@
+Entities:-
+
+1)User:
+
+UserID (Primary Key): INT
+Name: VARCHAR(255)
+Email: VARCHAR(255)
+Phone: VARCHAR(15) (Assuming a simple text representation for the phone number)
+
+
+2)Tweet:
+
+TweetID (Primary Key): INT
+UserID (Foreign Key referencing User): INT
+Content: TEXT
+Timestamp: TIMESTAMP
+
+
+3)Like:
+
+LikeID (Primary Key): INT
+UserID (Foreign Key referencing User): INT
+TweetID (Foreign Key referencing Tweet): INT
+Timestamp: TIMESTAMP
+
+
+4)Retweet:
+
+RetweetID (Primary Key): INT
+UserID (Foreign Key referencing User): INT
+OriginalTweetID (Foreign Key referencing Tweet): INT
+Timestamp: TIMESTAMP
+
+
+5)Follow:
+
+FollowID (Primary Key): INT
+FollowerUserID (Foreign Key referencing User): INT
+FollowingUserID (Foreign Key referencing User): INT
+Timestamp: TIMESTAMP
+
+
+Relationship:-
+
+
+User - Tweet (One-to-Many):
+One user can have many tweets (One mandatory, many optional).
+Many tweets belong to one user.
+
+
+User - Like (Many-to-Many):
+One user can like many tweets (Many optional on the "many" side).
+One tweet can be liked by many users (Many optional on the "many" side).
+
+User - Retweet (One-to-Many):
+One user can retweet many tweets (One mandatory, many optional).
+Many retweets are associated with one user.
+
+
+User - Follow (Many-to-Many):
+One user can follow many users, and one user can be followed by many users (Many mandatory on both sides).
+This is a many-to-many relationship, often represented by an associative table (Follow).
+
+
+Tweet - Like (One-to-Many):
+Many likes can be associated with one tweet.
+Each like is related to one specific tweet.
+
+
+Tweet - Retweet (One-to-Many):
+Many Retweet can be associated with one tweet.
+Each Retweet is related to one specific tweet.
